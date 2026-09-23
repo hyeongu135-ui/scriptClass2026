@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>급여계산 연습문제</title>
+</head>
+<body>
+    <div>
+        <h1>직원 근무시간 급여 계산</h1>
+        <ul>
+            <li>근무시간 입력 :
+                <input type="text" id="time" placeholder="근무시간 입력">
+                <button onclick="pay()">급여 계산</button>
+                <p id="output1"></p>
+                <p id="output2"></p>
+                <p id="output3"></p>
+            </li>
+        </ul>
+
+        <script>
+            let hour = document.getElementById('time');
+            let output1 = document.getElementById('output1')
+            let output2 = document.getElementById('output2')
+            let output3 = document.getElementById('output3')
+            // console.log(hour)
+            function pay(){
+                let time1 = Number(hour.value);
+                let Pdefault = 10000;
+
+                let payment
+                    if(time1 <= 8){
+                            payment = time1 * Pdefault
+                            
+                        }else{
+                            payment = (8*Pdefault)+(time1-8)*(Pdefault*1.5)
+                        };
+                        output1.innerText=`급여 : ${payment}원`;
+
+                        switch(true){
+                            case time1 == 0 : output2.innerText = `근무 메시지 : 미출근`; break;
+                            case time1 <= 8 : output2.innerText = `근무 메시지 : 정상 근무`; break;
+                            case time1 > 8 : output2.innerText = `근무 메시지 : 초과 근무`; break;
+                        }
+                    output3.innerText = (time1 > 0 ? '급여있음':'무급');
+                }
+                    
+        </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>button</title>
+    <style>
+        div{
+            display: flex;
+            justify-content: space-between;
+            /* border: 1px solid red; */
+            margin-top: 10px ;
+            margin-left: 10px;
+            width: 50px;
+            background-color: #ccc;
+            /* border-radius: 50%; */
+        }
+        button{
+            background-color: #244af5;
+            /* border-radius: 50; */
+            border: none;
+            cursor: pointer;
+        }
+        button:hover{
+            color:rgb(73, 163, 253);
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <button onclick="down()">-</button>
+        <span id="countt">1</span>
+        <button onclick="up()">+</button>
+    </div>
+
+    <script>
+        let countt1 = document.getElementById('countt');
+        let countt11 = 1;
+        function down(){
+            if(countt11 > 1 ){
+                countt11--;
+                countt1.innerText = countt11
+            }else{
+                alert('최소수량은 1개입니다.');
+                return;
+            }
+        }
+        function up(){
+            if(countt11 < 10 ){
+                countt11++;
+                countt1.innerText = countt11
+            }else{
+                alert('최대수량은 10개입니다.');
+                return;
+            }
+            console.log(countt1);
+        }
+    </script>
+</body>
+</html>

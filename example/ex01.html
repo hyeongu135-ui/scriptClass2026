@@ -20,6 +20,18 @@
     <input id="numInput" type="number" placeholder="숫자 입력" />
     <button onclick="showVariable()">값 확인</button>
     <p id="output1"></p>
+    <hr>
+
+    <!-- num1,2값 비교  1 크면 false, 같으면 false 2가 크면 true -->
+    <input id="num1" type="number" placeholder="숫자1"/>
+    <input id="num2" type="number" placeholder="숫자2"/>
+    <button onclick="compareNum()">비교</button>
+    <p id="output5"></p>
+
+
+    <input id="score" type="number" placeholder="점수 입력" />
+    <button onclick="checkGrade()">등급 확인</button>
+    <p id="output8"></p>
 
     <script>
         let print01 = document.getElementById('p1');
@@ -43,9 +55,31 @@
             function showVariable() {
                 // input태그를 이용해 입력받은 모든 값은 문자임
                 // 형변환을 하여 연산을함 => 스크립트 형변환 함수 Number()사용.
+                // 자바스크립트는 코드 실행 순서가 존재함. 
+                // 스크립트 파일 로드시 함수 바깥쪽 코드 먼저 실행함
                 let c = Number(document.getElementById('numInput').value);
                 print03.innerText =`변수 Num : ${c+'a'}`;
                 }
+
+
+                let print05 = document.getElementById('output5')
+            function compareNum() {
+                let e = Number(document.getElementById('num1').value);
+                let f = Number(document.getElementById('num2').value);
+                let max = (f>e)?'true':'false';
+                print05.innerText = `결과는 : ${max}`;
+                }
+
+                let output8 = document.getElementById('output8')
+                let score = document.getElementById('score')
+                function checkGrade() {
+                    //삼항연산자 이용, 90이상 A, 80이상 B, 70이상 C, 60이상 D, 그외 F
+                    let score01 = Number(score.value);
+                    let print06 = score01>=90?'A':score01>=80?'B':score01>=70?'C':score01>=60?'D':'F';
+                    output8.innerText = `결과는 ${print06}`;
+                }
+
+                
             
     </script>
 </body>

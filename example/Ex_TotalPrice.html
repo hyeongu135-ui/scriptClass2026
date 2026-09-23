@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TotalPrice</title>
+    <style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    background-color: #ccc;
+}
+
+body{
+    width: 400px;
+    margin: 115px auto 0;
+    padding: 30px 10px 15px;
+
+    background-color: white;
+
+    border: 4px solid #aaa;
+
+    font-family: Arial, sans-serif;
+}
+
+/* 제목 */
+h1{
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+/* 공통 div */
+div{
+    display: flex;
+    align-items: center;
+}
+
+/* 상품 단가 */
+div p{
+    margin: 0;
+}
+
+body > div:nth-of-type(1){
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+#price{
+    font-weight: bold;
+}
+
+/* 수량 입력 부분 */
+body > div:nth-of-type(2){
+    margin-bottom: 15px;
+    gap: 5px;
+}
+
+body > div:nth-of-type(2) p{
+    margin-right: 8px;
+}
+
+#Qu{
+    width: 82px;
+    height: 35px;
+
+    border: 1px solid #999;
+    border-radius: 4px;
+
+    text-align: center;
+    font-size: 16px;
+}
+
+/* 금액 계산 버튼 */
+button{
+    height: 35px;
+    padding: 0 13px;
+
+    border: none;
+    border-radius: 4px;
+
+    background-color: #4caf61;
+    color: white;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: #3d9950;
+}
+
+/* 결과 출력 부분 */
+body > div:nth-of-type(3){
+    width: 100%;
+    min-height: 43px;
+
+    padding: 12px;
+
+    background-color: #f6f6f6;
+    border-radius: 6px;
+}
+
+#info{
+    font-size: 14px;
+    color: #333;
+}
+    </style>
+</head>
+<body>
+    
+    <h1>상품 주문하기</h1>
+    <div>
+        <p>상품 단가 : </p><p id="price">&nbsp;15,000원</p>
+    </div>
+    <div>
+        <p>수량 : </p> <input type="text" id="Qu"> <button onclick="CalPrice()">금액 계산</button>
+    </div>
+    <div>
+        <p id="info">수량을 입력하고 계산 버튼을 누르세요.</p>
+    </div>
+
+    <script>
+        let Quan = document.getElementById('Qu');
+        // console.log('Q'+Quan)
+        let info1 = document.getElementById('info');
+    
+        function CalPrice(){
+            let Quantity = Number(Quan.value);
+            let pr = 15000;
+            // console.log(typeof pr);
+            if(Quantity != 0){
+                let total = Quantity*pr;
+                console.log(typeof total);
+                console.log(typeof Quantity);
+                console.log(typeof pr);
+                console.log(Quantity * pr);
+
+                    if(total >= 50000){
+                    info1.innerText = `총 결제 금액 :\n ${total.toLocaleString()}원 무료배송 대상이며, 사은품이 함께 증정됩니다!`
+                     } else{
+                    info1.innerText = `총 결제 금액 \n ${total.toLocaleString()}원\n(5만원 미만 구매 시 배송비 3,000원이 추가됩니다.)`
+                     }
+            } else {
+                alert('수량을 1개 이상 입력해주세요.')
+            }
+        }
+    </script>
+</body>
+</html>
