@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습문제 3</title>
+    <style>
+        table, tr,td,th{
+            border: 1px solid rgb(2, 2, 2);
+            text-align: center;
+            border-collapse: collapse;
+
+        }
+        .hi{
+            color: red;
+        }
+        .lo{
+            color: blue;
+        }
+
+
+    </style>
+</head>
+<body>
+    <h1>상품 가격 비교</h1>
+    <button onclick="product()">상품 출력</button>
+    <div id = 'output'></div>
+
+    <script>
+    let result = '<table><tr><th>상품</th><th>가격</th><th>등급</th></tr>'
+    let output = document.getElementById('output');
+        function product(){
+            let p_n = ['노트북','마우스','모니터','키보드'];
+            let p_p = [120000,30000,80000,40000];
+            // let result = '';
+                for(let i = 0; i < p_n.length; i++){
+                    let grade = p_p[i] >= 50000?'고가':'저가';
+                    let className = p_p[i] >= 50000?'hi':'lo';
+                    result += `<tr><td>${p_n[i]}</td><td>${p_p[i]}</td><td><span class ="${className}">${grade}</span></td></tr>`
+                }
+                output.innerHTML = `${result} </table>`;
+                }
+    </script>
+
+</body>
+</html>

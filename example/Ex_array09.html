@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>짝수 홀수 구분</title>
+</head>
+<body>
+    <label for="number">2번 숫자 배열 입력 (예: 12,7 ...) <input type="text" id="number"></label> <button onclick="numc()">결과 확인</button>
+        <p id ="even">짝수 : <span id="p1"></span> </p> / <p id="odd">홀수 : <span id="p2"></span> </p>
+  
+
+    <script>
+        let p1 = document.getElementById('p1');
+        let p2 = document.getElementById('p2');
+        function numc(){
+           let number = document.getElementById('number').value;
+            let result = number.split(',');
+            let even = '';
+            let odd = '';
+            for(let i = 0; i < result.length; i++){
+                if(result[i] % 2 == 0){
+                    even += `${result[i]},`;
+                }else{
+                    odd += `${result[i]},`;
+                }
+            }
+            even = even.slice(0,-1);
+            odd = odd.slice(0,-1);
+            p1.innerText = `${even}`;
+            p2.innerText = odd;
+        }
+</script>
+</body>
+</html>

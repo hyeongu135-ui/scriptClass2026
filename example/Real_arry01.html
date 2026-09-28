@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실무 배열 연습문제</title>
+    <style>
+        .fail{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>학생 성적표</h2>
+    <button onclick="showGrade()">성적표 출력</button>
+    <div id="output">
+
+    </div>
+    <script>
+        // innerText => 태그를 입력해도 문자로 출력됨
+        // innerHTML => 태그를 입력하면 인식이 가능하여 CSS로 편집이 가능해짐
+
+        let output = document.getElementById('output');
+        function showGrade(){
+            // 이름, 점수 배열로 생성
+            let student = ['철수','영희','민수','수지','준호'];
+            let scores = [85,56,92,77,60];
+            let result = '';
+
+            for(let i = 0 ; i < student.length; i++){
+                let status = scores[i]>=60?'합격':'불합격';
+                //클래스 이름 지정 코드
+                let className = scores[i]>=60?'pass':'fail';
+
+                //``사용하여 result 태그 작성
+                result +=`${student[i]}:${scores[i]}점 - <span class ='${className}'>${status}</span><br>`;
+            }
+            output.innerHTML = result;
+        }
+    </script>
+</body>
+</html>

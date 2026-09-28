@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .oos{
+            color: red;
+        }
+        .scs{
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>책 재고 현황</h1>
+    <button onclick="book()">재고 확인</button>
+    <p id="p1"></p>
+    <script>
+        let p1 = document.getElementById('p1');
+
+        function book(){
+            let name = ['자바스크립트 입문','HTML & CSS', '파이썬 기초','데이터 분석'];
+            let stock = [10,3,7,2];
+            let result = '';
+
+            for(let i = 0; i < name.length; i++){
+                let total = stock[i]<=5?'재고부족':'재고충분';
+                let className = stock[i]<=5?'oos':'scs';
+                result += `${name[i]} : ${stock[i]} - <span class = '${className}'>${total}</span><br>`
+            }
+            p1.innerHTML = result;
+        
+        }
+    </script>
+</body>
+</html>

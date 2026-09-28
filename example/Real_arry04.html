@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습문제4</title>
+    <style>
+        span{
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>투표결과</h1>
+    <button onclick="total()">투표 집계</button>
+    <p id ="vote">
+
+    </p>
+
+    <script>
+        let vote = document.getElementById('vote')
+        let result = '';
+        let grade = '';
+            function total(){
+                let name = ['철수','영희','민수'];
+                let count = [120,150,90];
+                let max = 0;
+                let index = 0;
+                for(let i = 0 ; i < name.length; i++){
+                    if(max < count[i]){
+                        max = count[i];
+                        index = i;
+                    }
+                }
+                
+                for(let i = 0 ; i < name.length; i++){
+                    let grade = '';
+                    if(index == i){
+                        grade = '1등';
+                    }
+                    result +=`${name[i]} : ${count[i]}표 <span>${grade}</span><br>`
+                }
+
+                    vote.innerHTML = result + grade;
+                }
+            
+
+    </script>
+</body>
+</html>
