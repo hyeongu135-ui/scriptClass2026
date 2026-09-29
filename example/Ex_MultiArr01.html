@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2차원 기초배열</title>
+</head>
+<body>
+    <script>
+        const arr = Array.from(Array(3),() => new Array(3).fill(0));
+        // console.log(arr);
+
+        for(let i = 0 ; i < arr.length; i++){
+                arr[i][i] = 1;
+            }
+            console.log(arr);
+        
+        const arr02 = Array.from(Array(2),() => new Array(4).fill(1));
+        let count = 0;
+        for(let i = 0 ; i < arr02.length; i++){
+            for(let j = 0; j< arr02[i].length; j++){
+                arr02[i][j] += count++;
+            }
+        }
+        console.log(arr02);
+    </script>
+</body>
+</html>

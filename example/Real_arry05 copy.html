@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습문제5</title>
+    <style>
+        div div{
+            display: flex;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>실시간 재고 관리</h1>
+    <div id="output">
+    </div>
+    <script>
+        let output = document.getElementById('output');
+        let products = ['노트북','마우스','키보드'];  //상품
+        let stokes = [3,3,2]; // 재고수량
+
+        function render(){
+            let result = '';  // tag 저장 변수
+            let total = 0 ;
+            for(let i = 0; i < products.length; i ++){
+                result += `<div class='row'>${products[i]}:
+                            <span>${stokes[i]}개</span>
+                            <button onclick='minus(${i})'>-</button>
+                            <button onclick='plus(${i})'>+</button></div>`
+                            total += stokes[i];
+                        }
+            result +=`<div>총 재고 : ${total}개</div>`
+            output.innerHTML = result;
+        }
+        render();
+        
+        function minus(i){
+            //재고 수량이 0보다 클때만 마이너스
+            if(stokes[i]>0){stokes[i]--;}
+            // console.log(stokes); // 메모리에서만 계산되고 출력은 안됨
+            render();
+        }
+        function plus(i){
+            //재고 수량이 0보다 클때만 마이너스
+            stokes[i]++
+            // console.log(stokes); // 메모리에서만 계산되고 출력은 안됨
+            render();
+        }
+    </script>
+
+</body>
+</html>

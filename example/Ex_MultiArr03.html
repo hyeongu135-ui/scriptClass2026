@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2차원 기초배열(3)</title>
+</head>
+<body>
+    <script>
+        const arr = Array.from(Array(2),() => new Array(3).fill(0));
+        console.log(arr);
+        let num = 1;
+        let sum1 = 0;
+        
+        // i=0일때, j=3, i=1, j=3
+        for(let i = 0 ; i < arr.length; i++){
+            let sum = 0;
+                for(let j = 0; j < arr[i].length; j++){
+                    arr[i][j] += num++;
+                    sum += arr[i][j];
+                }
+                console.log(`배열의 합 : ${sum}`);
+            }
+
+        let arr06 = Array.from(Array(3),() => new Array(3).fill(0));
+        console.log(arr06)
+
+        let arr08 =[
+                    [3, 9, 2],
+                    [8, 7, 6],
+                    [1, 4, 5]
+                    ];
+        let max = 0;
+        let f = 0;
+        let s = 0;
+                    for(let i = 0 ; i < arr08.length; i++){
+                        for(let j = 0 ; j < arr08[i].length; j++){
+                            if(max < arr08[i][j]){
+                                max = arr08[i][j]
+                                f = i;
+                                s = j;
+                            }
+                        }
+                    } console.log(`최대값${arr08[f][s]}`)
+
+    </script>
+</body>
+</html>

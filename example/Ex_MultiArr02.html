@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2차원 기초배열(2)</title>
+</head>
+<body>
+    <script>
+        const arr01 = Array.from(Array(4),()=>new Array(8).fill(0))
+        for(let i =0; i < arr01.length; i++){
+            for(let j = 0; j < arr01[i].length; j++)
+            if(j % 2 ==0){
+                arr01[i][j]=1;
+            }else{
+                arr01[i][j]=0;
+            }
+        }
+        console.log(arr01);
+
+        const arr02 = Array.from(Array(2),()=>new Array(3).fill(0))
+        console.log(arr02)
+        let num = 1;
+        let sum = 0;
+        for(let i = 0; i < arr02.length; i++){
+            for(let j = 0 ; j < arr02[i].length; j++){
+                arr02[i][j] += num++;
+                sum += arr02[i][j];
+            }
+        }
+        console.log(`배열의 합계 : ${sum}`)
+        const arr03 = Array.from(Array(4),()=>new Array(4).fill(0))
+        
+        arr03.forEach((rowValue)=>{
+            rowValue.forEach((coValue,index)=>{
+                rowValue[index] = index % 2 == 0 ? 1 : 0;
+            })
+            console.log(rowValue);
+        })
+        console.log(arr03)
+
+
+        const resultArry03 = arr03.map((rowV) =>{
+            return rowV.map((coV,ind)=>{
+                return ind % 2 == 0 ? 1:0;
+            })
+        })
+        console.log(resultArry03);
+    </script>
+</body>
+</html>

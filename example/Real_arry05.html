@@ -12,23 +12,35 @@
     </style>
 </head>
 <body>
+    <h1>실시간 재고 관리</h1>
+    <div id="output">
+    </div>
     <script>
         let output = document.getElementById('output');
         let products = ['노트북','마우스','키보드'];  //상품
         let stokes = [3,3,2]; // 재고수량
-        let total = 0;
         function render(){
+            let total = 0;
             for(let i = 0 ; i < products.length; i++){
                 total += stokes[i];
             };
             for(let i = 0 ; i <products.length; i++){
-                output.innerHTML =  `${products[i]} : ${stokes[i]} <button onclick = "render">-</button><button onclick = "render">+</button>`
+                output.innerHTML =  `${products[i]} : ${stokes[i]} <button onclick = "plus">-</button><button onclick = "minus">+</button>`
             }
         }
+        function plus(){
+            for(let i = 0 ; i < products.length; i ++){
+                stokes[i]++;
+            }
+            render()
+        }
+        function minus(){
+            for(let i = 0 ; i < products.length; i ++){
+                stokes[i]--;
+            }
+            render()
+        }
     </script>
-        <h1>실시간 재고 관리</h1>
-        <div id="output">
-        </div>
 
 </body>
 </html>

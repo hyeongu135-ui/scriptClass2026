@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실무 2차원 배열 연습문제</title>
+    <style>
+        table{
+        border-collapse: collapse;
+        width: 300px;
+        height: 300px;
+        text-align: center;
+        border:  1px solid lightgray;
+        
+    }
+    td{
+            border:  1px solid lightgray;
+            
+        }
+    </style>
+</head>
+<body>
+    <h2>자바스크립트 2차원 배열 실습 예제</h2>
+    <div class='container'> 
+        <h3>2.성적표 (총점과 평균 계산)</h3>
+        <div id="score"></div>
+    </div>
+    <script>
+        score = document.getElementById('score');
+        let scores = [
+                        [85, 90, 80],
+                        [70, 60, 75],
+                        [95, 100, 90],
+                    ];
+        let result = '';
+        for(let i = 0; i < scores.length; i++){
+            let sum = 0;
+            result += `학생 ${i+1} : `;
+            for(let j = 0; j < scores[i].length; j++){
+                sum += scores[i][j];
+                result += `${scores[i][j]}`;
+
+                if(j < scores[i].length-1){
+                    result += `, `;
+                }else{
+                    result += ` `;
+                }
+            }
+            result += `| 총점 : ${sum} | 평균 : ${(sum/scores.length).toFixed()}<br>`;
+        }
+        score.innerHTML = result;
+    </script>
+</body>
+</html>

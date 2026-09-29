@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습문제6</title>
+    <style>
+
+        span{
+            color: red;
+        }
+        .total{
+            display: block;
+            color: rgb(0, 161, 0);
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>장바구니</h1>
+    <div id="output">
+
+    </div>
+    <script>
+        let output = document.getElementById('output');
+        let name = ['티셔츠','양말','모자'];
+        let price = [15000,3000,12000];
+        let stock = [1,1,1];
+        function render(){
+            let total_price = 0;
+            let result = '';
+            let result2 = '';
+            for(let i = 0 ; i < price.length; i ++){
+                result += `<div class = 'all'>
+                            ${name[i]} (${price[i].toLocaleString()}) x ${stock[i]} 
+                            ${stock[i] == 0 ? result2 = `<span>품절</span>`:`${(price[i]*stock[i]).toLocaleString()}원`}  
+                            <button onclick='minus(${i})'>-</button>
+                            <button onclick='plus(${i})'>+</button></div>`
+                            total_price += price[i]*stock[i]
+                        }
+            output.innerHTML = result + `<div class='total'> 총합계 : ${total_price.toLocaleString()}</div>`;
+
+        }
+        render()
+
+        function minus(i){
+            if(stock[i] > 0){
+                stock[i] --;
+                render();
+        }
+    }
+        function plus(i){
+            stock[i]++;
+            render();
+        }
+    </script>
+</body>
+</html>

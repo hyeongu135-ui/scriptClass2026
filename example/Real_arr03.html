@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실무 2차원 배열 연습문제</title>
+    <style>
+        table{
+        border-collapse: collapse;
+        width: 300px;
+        height: 300px;
+        text-align: center;
+        border:  1px solid lightgray;
+        
+    }
+    td{
+            border:  1px solid lightgray;
+            
+        }
+    </style>
+</head>
+<body>
+    <h2>자바스크립트 2차원 배열 실습 예제</h2>
+
+        <h3>3. 달력</h3>
+        <div id="Engram"></div>
+    <script>
+    let Engram = document.getElementById(`Engram`);
+    let weekdays = ['일', '월', '화', '수', '목', '금', '토'];
+    let result = '';
+    let count = 1;
+    let arr = Array.from(Array(6),() => new Array(7).fill(0));
+
+    result += `<tr>`
+        for(let i = 0 ; i <= 6; i++){
+            result += `<td>${weekdays[i]}</td>`;
+        }
+    result += `</tr>`
+
+
+    for(let i = 1 ; i < arr.length; i++){
+        result += `<tr>`;
+            for(let j = 0 ; j < arr[i].length; j++){
+                count < 32 ? result += `<td>${count++}</td>`: result +=`<td></td>`
+        }
+        result += `</tr>`;
+    }
+    console.log(arr);
+    console.log(result)
+
+    Engram.innerHTML = `<table>${result}</table>`;
+    </script>
+</body>
+</html>

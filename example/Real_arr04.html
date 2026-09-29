@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실무 2차원 배열 연습문제</title>
+
+</head>
+<body>
+    <h2>자바스크립트 2차원 배열 실습 예제</h2>
+
+        <h3>3. 달력</h3>
+        <div id="score"></div>
+    <script>
+    let score = document.getElementById(`score`);
+            let names = ['홍길동', '개나리', '진달래'];
+            let subjects = ['국어', '영어', '수학'];
+            let scores = 
+                        [
+                            [85, 90, 78], // 홍길동
+                            [92, 88, 95], // 개나리
+                            [76, 85, 83], // 진달래
+                        ];
+            
+
+                        let max = 0;
+                        let f = 0;
+                        let s = 0;
+                        let result = '';
+                        
+                        //학생별 총점과 평균
+                        result +=`[학생별 총점과 평균]<br>`
+            for(let i = 0; i < scores.length; i++){
+                let sum = 0;
+                for(let j = 0; j < scores[i].length; j++){
+                    sum += scores[i][j];
+                }
+                result += `${names[i]} 총점 : ${sum}, 평균: ${(sum/names.length).toFixed()}<br>`
+            }
+            //과목별 평균
+            result += `[과목별 평균]<br>`
+            for(let i = 0; i < scores.length; i++){
+                let sum = 0;
+                // for(let j = 0; i < scores[i].length; j++){
+                //     sum += 
+                // }
+                // result += `${subjects[i]} 평균 : <br>` 
+            }
+
+            //맥스
+            result += `[최고 점수 학생]<br>`
+            for(let i = 0 ; i < scores.length; i++){
+                for(let j = 0 ; j < scores[i].length; j++){
+                    if(max < scores[i][j]){
+                        max = scores[i][j];
+                        f = i;
+                        s = j;
+                    }
+
+                }
+            }
+            result += `${names[f]}(${scores[f][s]})<br>`
+        score.innerHTML = result;
+    </script>
+</body>
+</html>

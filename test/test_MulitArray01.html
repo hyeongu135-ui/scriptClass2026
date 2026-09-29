@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="KO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2차원 배열</title>
+</head>
+<body>
+    <script>
+        // 자바스크립트에서 2차원 배열은 기본적으로 존재하지않음.
+        // 2차원 배열처럼 생성할 수있는 방법은 존재
+        // 1. 초기값 할탕하여 배열 생성법
+         let arr = [
+            ['a','b'], //1행
+            ['c','d'], //2행
+            ['e','f'] //3행
+        ];
+        // for문을 이용하여 콘솔에 출력한다.
+        // 단, 다중 for문 사용
+        for(let i = 0; i < arr.length; i++){
+            for(let k = 0; k < arr[i].length; k++){
+                console.log(`arr : ${arr[i][k]}`)
+            }
+        };
+
+        //2. new Array(행)을 이용하여 배열을 생성하는 방법
+        let arr02 = new Array(2); //행
+        //열은 for문 이용
+        for(let i=0; i<arr02.length; i++){
+            arr02[i] = new Array(3);  
+            for(let j=0; j<arr02[i].length; j++){
+                arr02[i][j] = 5;
+            }      
+        }
+
+        //출력
+        for(let i=0; i < arr02.length; i ++){
+            for(let j=0; j<arr02[i].length; j++){
+                console.log(`${[i]},${[j]} : ${arr02[i][j]}`)
+            }
+
+        }
+        
+        // ES6(자바스크립트 6버전의미)를 지원하는 모든 브라우저라면 사용가능한 방법
+        // Arrat.from(Array(2)),() => new Array(3));
+        const arr03 = Array.from(Array(6),() => new Array(7).fill(0));
+        console.log(`array03 : ${arr03}`);
+
+        for(let i=0; i < arr03.length; i ++){
+            for(let j=0; j<arr03[i].length; j++){
+                console.log(`${[i]},${[j]} : ${arr03[i][j]}`)
+            }
+
+        }
+
+        //forEach() : 배열 순회 전용 메소드로, 배열일떄만 사용가능
+        //forEach(value, index ,arr) => value값, index:인덱스 번호, arr:배열
+        // 순서 중요
+        // 배열이름.forEach ((value,index,arr) => {.....})
+        // => () => {.....} 콜백 함수
+        // call : 함수를 실행(호출)함
+        // back : 나중에, 또는 제어권을 넘겨 받은
+        // 직접 함수()형태로 실행되는게 아니라, 제어권을 넘겨받은 다른함수가 실행
+        // 나중에 호출되도록 만드는 것 
+
+        const tarry = [10,20,30];
+        tarry.forEach((value,index,arr)=>{
+            console.log(`value 값 : ${value}`);
+            console.log(`index 값 : ${index}`);
+            console.log(`arr 값 : ${arr}`);
+
+        });
+
+        // map() : 배열을 순회하여 출력하는 메소드
+        //          => 새로운 배열로 반환됨 
+        //          => 반드시 return 필요함
+        // map(),forEach = 콜백함수
+
+        let tarry02 = [1,2,3];
+        let doubled = tarry02.map((value,index,arr) => {
+            console.log(`tarry02 출력 : ${value}`);
+            return value * 10;
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실무 2차원 배열 연습문제</title>
+    <style>
+        table{
+        border-collapse: collapse;
+        width: 300px;
+        height: 300px;
+        text-align: center;
+        border:  1px solid lightgray;
+        
+    }
+    td{
+            border:  1px solid lightgray;
+            
+        }
+    </style>
+</head>
+<body>
+    <h2>자바스크립트 2차원 배열 실습 예제</h2>
+    <div class='container'> 
+        <h3>1. 좌석배치(5x5)</h3>
+        <div id="seatOut"></div>
+    </div>
+    <script>
+        //1~25까지 숫자를 2차원 배열에 출력
+        //innerHTML 메소드 이용
+        let seatOut = document.getElementById('seatOut');
+        let arr01 = Array.from(Array(5),()=>new Array(5).fill(0));
+        let result = ``;
+        let count = 1;
+        for(let i = 0; i < arr01.length; i++){
+            result += `<tr>`
+            for(let j = 0 ; j < arr01[i].length; j++){
+                result += `<td>${count++}</td>`;
+            }
+            result += `</tr>`
+        }
+        console.log(arr01)
+        console.log(result)
+        seatOut.innerHTML = `<table>${result}</table>`;
+    </script>
+</body>
+</html>
