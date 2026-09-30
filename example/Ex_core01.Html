@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>코어 기초 연습 문제</title>
+</head>
+<body>
+    <button onclick="showyear()">1. 현재 년도 출력</button>
+    <button onclick="showday()">2. 오늘 요일 출력</button>
+    <button onclick="showtime()">3. 현재 시간 출력</button>
+    <button onclick="showDates()">4. 하루 후, 일주일 후 날짜 출력</button>
+    <button onclick="showyearWeekends()">5. 요일에 따른 메시지 출력</button>
+    <p id="output"></p>
+
+    <script>
+        // 1. 현재 연도 출력
+        // 문제 : 현재 날짜를 Date객체로 가져와서 콘솔에 "올해는 2026년입니다"
+        let output = document.getElementById('output');
+        function showyear(){
+                let year = new Date;
+                let now_year = year.getFullYear();
+                let result = `올해는 ${now_year}년입니다`;
+                output.innerText = `올해는 ${now_year}년입니다`;
+            }
+            //2. 오늘 요일 출력
+            function showday(){
+                let today = new Date();
+                let week  = [`일`,`월`,`화`,`수`,`목`,`금`,`토`];
+                let weDay = today.getDay();
+                output.innerText = `today의 요일 : ${week[weDay]}요일`
+            }
+            3.
+            function showtime(){
+                let today = new Date();
+                let localTime = today.toLocaleTimeString();
+                output.innerText = `today : ${localTime}`
+            }
+            // 문제 : 현재 시간을 
+            function showDates(){
+                let year = new Date;
+                let tomorrow = new Date(year);
+                tomorrow.setDate(year.getDate()+1)
+                let N_W = new Date(year);
+                N_W.setDate(year.getDate()+7)
+
+                output.innerHTML = `하루 : ${tomorrow.toLocaleDateString()}<br/>
+                                    일주일  : ${N_W.toLocaleDateString()}`
+            }
+
+            // 5.요일에 따라 메시지 출력
+            // 문제 : 오늘 요일이 주말{토,일}이면 "주말이에요!",
+            function showyearWeekends(){
+                let today = new Date();
+                let result = '';
+                let week  = [`일`,`월`,`화`,`수`,`목`,`금`,`토`];
+                for(let i = 0 ; i < week.length; i++){
+                    if(week[i] == '일' || week[i] == '월'){
+                        result = '주말'
+                    }else {
+                        result = '평일'
+                    }
+                }
+                output.innerText = result
+                //        평일이면 '열심히 일하는 날!'
+                
+            }
+    </script>
+</body>
+</html>

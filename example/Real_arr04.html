@@ -35,7 +35,7 @@
                 for(let j = 0; j < scores[i].length; j++){
                     sum += scores[i][j];
                 }
-                result += `${names[i]} 총점 : ${sum}, 평균: ${(sum/names.length).toFixed()}<br>`
+                result += `${names[i]} 총점 : ${sum}, 평균: ${(sum/names.length).toFixed(1)}<br>`
             }
             //과목별 평균
             result += `[과목별 평균]<br>`
@@ -44,7 +44,7 @@
                 // for(let j = 0; i < scores[i].length; j++){
                 //     sum += 
                 // }
-                // result += `${subjects[i]} 평균 : <br>` 
+                result += `${subjects[i]} 평균 : <br>` 
             }
 
             //맥스
