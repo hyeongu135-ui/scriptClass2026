@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메가박스</title>
+
+    <style>
+        td{
+           border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>빠른예매</h2>
+    <div>
+        <div id="main">
+            <hr>
+            <div class="reset">
+            <p>관람인원선택</p>
+            <button>🔄초기화</button>
+            </div>
+            <div class = reserve>
+                <div>
+                    성인<button onclick="adult_m()">-</button><button onclick="adult_P()">+</button>
+                    청소년<button onclick="teenager_m()">-</button><button onclick="teenager_p()">+</button>
+                    경로<button onclick="Path_m()">-</button><button onclick="Path_p()">+</button>
+                    우대<button onclick="Preferential_m()">-</button><button onclick="Preferential_p()">+</button> 
+                </div>
+                <div id="seat">
+                    <p>[알림] 커플석은 2,4,6,8명일 경우 선택하실 수 있습니다.</p>
+                    <div id="seat_row"></div>
+                    <div id="seat_output"></div>
+                </div>
+            </div>
+        </div>
+        <div class="movie_info">
+            <div>
+                <p><sapn>15</sapn> 어쩔수가없다</p>
+                 <span>2D</span>
+                 <hr>
+                 <div>
+                    <div>
+                        <p class="place">대전중앙로</p>
+                        <p class="type">1관 [Laser]</p>
+                        <p class="day">2025.10.03(금)</p>
+                        
+                        <select>
+                            <option value="09:40~12:08">09:40~12:08</option>
+                            <option value="09:40~12:08">10:40~13:08</option>
+                            <option value="09:40~12:08">11:40~14:08</option>
+                        </select>
+                    </div>
+                    <div>
+                        <img src="/MegaBox/다운로드.webp" alt="">
+                    </div>
+                </div>    
+            </div>
+        </div>
+    </div>
+    <script>
+        let arr = ['A','B','C','D','E','F','G','H','I','J']
+        let arr1 = Array.from(Array(10),() => new Array(10).fill(''));
+        let arr2 = [];
+        console.log(arr);
+
+        let seat_output = document.getElementById('seat_output');
+        let seat_row = document.getElementById('seat_row');
+        let count = 1;
+        let seat_count = 0;
+        let table = `<table>`;
+        let low_seat = '<table><tr>';
+            
+            
+            
+            for(let i = 0; i < arr1.length; i++){
+                table += `<tr><td class='seat_row_2'>${arr[i]}</td>`;
+                    for(let j = 0; j < arr1[i].length; j++){
+                        // arr1[j][i] += count;
+                        table += `<td onclick='movie_reserve(${i},${j})' class = 'seat_num_${arr[i]}'>${j+1}</td>`
+                        arr1[i][j] = `${[arr[i]]},${[j]}`;
+                        // seat_count++;
+                        console.log('좌석배열 값 :',arr1[i][j]);
+                    }
+                    table += `</tr>`
+                    console.log(arr1)
+                    count++;
+                }
+                seat_output.innerHTML = table;
+                // console.log(arr1)
+                // console.log(table)
+                for(let i = 0; i < arr.length; i++){
+                }
+                
+
+                function movie_reserve(seatNum,seatNum2){
+                    // console.log(seatNum);
+                    // console.log(seatNum2);
+                    for(let i = 0; i < arr1.length; i++ ){
+                        for(let j = 0; j < arr1[i].length; j++){
+                            if(arr2[i]==arr1[seatNum][seatNum2]){
+                                alert('이미 예약된 자리입니다.')
+                            }else{
+                                 if(arr1[seatNum][seatNum2] == arr1[i][j]){
+                                arr2 += `${arr1[seatNum][seatNum2]}`;
+                                console.log(arr2)
+                                console.log(arr1[seatNum][seatNum2]);
+                            }
+                            }
+                        }
+                    }    
+                    }
+
+                    // for(let i = 0 ; i < arr1.length; i ++){
+                    //     for(let j = 0; j < arr1[i].length; j++){
+                    //         if(seatNum[low][cul] == arr1[i][j]){
+                    //         }
+                            
+                    //     }
+                    // }
+                
+            
+    </script>
+</body>
+</html>

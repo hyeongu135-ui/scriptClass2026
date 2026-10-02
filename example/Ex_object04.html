@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오브젝트 기초연습문제</title>
+</head>
+<body>
+    <p id = scores></p>
+    <script>
+        let scores =document.getElementById('scores')
+        let result = '';
+        let student = [
+            {name:'홍길동', kor: 90, eng: 80,math: 85},
+            {name:'성춘향', kor: 95, eng: 88,math: 92},
+            {name:'이몽룡', kor: 70, eng: 75, math: 80}
+        ];
+        for(let i = 0; i < student.length; i++){
+            let sum = 0;
+            sum += student[i].kor + student[i].eng + student[i].math
+            console.log(`${student[i].name}의 평균 점수 : ${(sum/3).toFixed(2)}`)
+            result += `${student[i].name}의 평균 점수 : ${(sum/3).toFixed(2)}<br>`
+        }
+        scores.innerHTML = result;
+        // console.log(`${student[i]}의 평균 점수 : ${(sum/3).toFixed()}`)
+        
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오브젝트 기초연습문제</title>
+</head>
+<body>
+    <script>
+        let student = {
+            name:'김길동',
+            age:28,
+            major:'컴공'
+        }
+        console.log('학생정보',student);
+    
+        let car ={
+            brand: 'Hyundai',
+            color: '흰색',
+            pirce: 2500
+
+        }
+        console.log('자동차 정보:', car);
+        //객체 접근하는 방법 : 객체이름, 속성이름
+        car.color="검정색";
+        car.pirce = 3000;
+        console.log('자동차 정보:', car);
+
+        let item1 = {name:"노트북",price:1000,quantity:1};
+        let item2 = {name:"마우스",price:50,quantity:2};
+        let cart1 = [item1,item2];
+
+        // 오브젝트 배열을 일명 더미데이터라 부름
+        // 오브젝트 배열에서 각 데이터마다 식별자가 필요함
+        // 배열.인덱스 = 프라이머리키와 유사함
+
+        let cart2 = [
+            {name:"노트북",price:1000,quantity:1},
+            {name:"마우스",price:50,quantity:2}
+        ];
+        console.log(cart2);
+        console.log(cart2);
+
+        let sum = 0 ;
+        for(let i = 0; i<cart1.length; i++){
+            sum+= cart1[i].price* cart1[i].quantity;
+        }
+        console.log('장바구니 총계 : ', sum);
+
+    </script>
+    
+</body>
+</html>

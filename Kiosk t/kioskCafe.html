@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kiosk</title>
+    <link rel="stylesheet" href="/Kiosk/kioskCafe.css" class="">
+    <style>
+        /*{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        ul{
+            list-style: none;
+        }
+        #menu_li {
+            width: 20%;
+            display : inline-block;
+            text-align: center;
+
+            margin-right: 27px;
+
+            
+         }
+        
+        .total_price{
+            width: 900px;
+            margin: 0 auto;
+            text-align: right;
+            border: 1px solid green;
+            border-top: none;
+        }
+        .main{
+            display: flex;
+            justify-content: space-between;
+            border: 1px solid green;
+            width: 900px;
+            height: 700px;
+            margin: 0 auto;
+            background-color: antiquewhite;
+            overflow: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        .main1{
+            width: 70%;
+            padding-top: 20px;
+            padding-left: 20px;
+        }
+        .total_main{
+            
+            padding-top: 20px;
+            padding-left: 20px;
+            width: 30%;
+            background-color: green;
+            overflow-y: auto;
+            overflow-x: hidden;
+            
+        }
+
+        img{
+            width: 100%;
+        }
+        #product{
+            border: 1px solid blue;
+            width: 200px;
+        }
+        #product li{
+            width: 20%;
+            cursor: pointer;
+  
+        }
+        em{
+            font-size: 15px;
+        }*/ 
+        #total li {
+    position: relative;
+    padding-bottom: 58px;
+}
+
+#total li > button {
+    position: absolute;
+    bottom: 13px;
+    margin: 0;
+}
+
+#total li > button:nth-of-type(1) {
+    left: 13px;
+}
+
+#total li > button:nth-of-type(2) {
+    left: 53px;
+}
+
+#total li > button:nth-of-type(3) {
+    right: 13px;
+}
+
+#total li > button:hover {
+    transform: none;
+}
+    </style>
+</head>
+<body>
+    <div class ='main'>
+        <div class="main1">
+            <h1>원하시는 음료를 선택해 주세요</h1>
+            <p>please choose the drink you want.</p>
+                <div>
+                    <button class = 'chart'>MENU</button>
+                </div>
+                <div class = "menu">
+                        <ul id="menu_output"></ul> 
+                </div>
+        </div>
+        <div class="total_main">
+            <h1>주문내역</h1>
+            <ul id = 'total'></ul>
+        </div>
+    </div>
+    <div class="total_price">
+        <p id="total_price"></p>|<button onclick="check()">현금결제</button>
+    </div>
+
+    <script>
+        let menus = [
+                        { id: 0 ,name: '아메리카노', type: 'HOT', price: 1000,quantity:1 },
+                        { id: 1, name: '아메리카노', type: 'ICE', price: 1300,quantity:1 },
+                        { id: 2, name: '바닐라라떼', type: 'HOT', price: 2500,quantity:1 },
+                        { id: 3, name: '바닐라라떼', type: 'ICE', price: 2800,quantity:1 },
+                        { id: 4, name: '연유라떼', type: 'HOT', price: 2500,quantity:1 },
+                        { id: 5, name: '연유라떼', type: 'ICE', price: 2800,quantity:1 },
+                        { id: 6, name: '카라멜마끼아또', type: 'HOT', price: 2800,quantity:1 },
+                        { id: 7, name: '카라멜마끼아또', type: 'ICE', price: 3000,quantity:1 },
+                        { id: 8, name: '카페모카', type: 'HOT', price: 3000,quantity:1 },
+                        { id: 9, name: '카페모카', type: 'ICE', price: 3300,quantity:1 },
+                        { id: 10, name: '딥카페라테', type: 'HOT', price: 3400,quantity:1 },
+                        { id: 11, name: '딥카페라테', type: 'HOT', price: 3400,quantity:1 },
+
+                    ];     
+       //DOM
+        let menu_output = document.getElementById('menu_output');
+        let total = document.getElementById('total');
+        let total_price = document.getElementById('total_price');
+        let menu_add = [];
+        
+        //메뉴 출력
+        let result = '';
+        for(let i = 0 ; i < menus.length; i++){
+            result += `<li id='menu_li' onclick="add(${i})">
+                <img src="/Kiosk/img/${i}.png" alt="">
+                <span>${menus[i].type}</span><br>
+                <em>${menus[i].name}</em>
+                <p>${menus[i].price}</p>
+                </li>`
+            }
+            menu_output.innerHTML = result;                
+            
+            function add(addindex){
+                
+                let check = -1;
+                let output = '';
+                
+                for(let i = 0 ; i < menu_add.length; i ++){
+                    if( menu_add[i].id == menus[addindex].id){
+                        check = i;
+                        break;
+                    }
+                }
+                // 수량만 추가한다.
+                // menu_add 배열의 상품이 존재하는지 유무를 check로 한다.
+                if(check == -1){
+                    // 장바구니 비어
+                    // 상품 menu_add 배열에 추가
+                    menu_add.push(menus[addindex]);
+
+                    
+                }else{
+                    // check= -1이 아니면 상품 없어
+                    // 수량 누적
+                    menu_add[check].quantity++;
+
+                }  
+                for(let i = 0; i < menu_add.length; i ++){
+                    output += `<li>${menu_add[i].name}${menu_add[i].type}${menu_add[i].quantity}. ${menu_add[i].price*menu_add[i].quantity}
+                                <button onclick = 'plus(${i})'>+</button>
+                                <button onclick = 'minus(${i})'>-</button>
+                                <button onclick = 'del(${i})'>del</button>
+                                </li>`;
+                }
+                total.innerHTML = output;
+                totalz();
+                }
+            
+            function render(){
+                //총합
+                let output = '';
+                for(let i = 0; i < menu_add.length; i++){
+                    output += `<li>${menu_add[i].name}${menu_add[i].type}${menu_add[i].quantity}. ${menu_add[i].price*menu_add[i].quantity}
+                        <button onclick = 'plus(${i})'>+</button>
+                                <button onclick = 'minus(${i})'>-</button>
+                                <button onclick = 'del(${i})'>del</button>
+                                </li>`;
+                            }
+                            
+                            total.innerHTML = output;
+                        
+                        }
+                        
+                        function plus(j){
+                            menu_add[j].quantity++;
+                            console.log(menu_add);
+                            render();
+                            totalz();
+                        }
+                        
+                        function minus(j){
+                            menu_add[j].quantity--;
+                            render();
+                            totalz();
+                        }
+                        function del(j){
+                            menu_add.splice(j,1)
+                            render();
+                            totalz();
+                        }
+                        
+                        render();
+                        
+                        function totalz(){
+                            let sum = 0;
+                            for(let i = 0 ; i < menu_add.length; i++){
+                                sum += menu_add[i].price * menu_add[i].quantity;
+                                console.log(sum)
+                            }
+                            total_price.innerHTML = `총 합계 : ${sum}`
+                                
+                        }
+        
+    </script>
+</body>
+</html>

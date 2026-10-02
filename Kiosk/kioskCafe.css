@@ -1,0 +1,435 @@
+@charset "utf-8";
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        min-height: 100vh;
+        padding: 40px 20px;
+        background: #eae7df;
+        color: #283b32;
+        font-family: "맑은 고딕", sans-serif;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    button {
+        font-family: inherit;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    /* 키오스크 전체 */
+    .main {
+        display: flex;
+        width: 1100px;
+        max-width: 100%;
+        height: 780px;
+        margin: 0 auto;
+        overflow: hidden;
+        border: 1px solid #d8ddd5;
+        border-radius: 28px 28px 0 0;
+        background: #faf8f2;
+        box-shadow: 0 20px 60px #263b3215;
+    }
+
+    /* 메뉴 영역 */
+    .main1 {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        min-width: 0;
+        padding: 32px;
+    }
+
+    .main1 h1 {
+        font-size: 27px;
+        font-weight: 800;
+        letter-spacing: -1.5px;
+        word-break: keep-all;
+    }
+
+    .main1 h1::before {
+        content: "☕  DAILY COFFEE";
+        display: block;
+        margin-bottom: 18px;
+        color: #64816c;
+        font-size: 12px;
+        letter-spacing: 3px;
+    }
+
+    .main1 > p {
+        margin-top: 9px;
+        color: #91988d;
+        font-size: 12px;
+    }
+
+    .chart {
+        margin: 24px 0 20px;
+        padding: 10px 25px;
+        border: none;
+        border-radius: 30px;
+        background: #244f3c;
+        color: #fff;
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        box-shadow: 0 5px 12px #244f3c20;
+    }
+
+    .menu {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        padding: 5px 8px 15px 3px;
+    }
+
+    #menu_output {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    /* 메뉴 카드 */
+    #menu_output > li {
+        position: relative;
+        padding: 9px 9px 15px;
+        overflow: hidden;
+        border: 1px solid #e6e7df;
+        border-radius: 17px;
+        background: #fff;
+        text-align: center;
+        cursor: pointer;
+        transition:
+            transform 0.2s,
+            box-shadow 0.2s,
+            border-color 0.2s;
+    }
+
+    #menu_output > li:hover {
+        transform: translateY(-4px);
+        border-color: #6e9980;
+        box-shadow: 0 10px 20px #244f3c18;
+    }
+
+    #menu_output > li:active {
+        transform: scale(0.96);
+    }
+
+    #menu_output img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        margin-bottom: 12px;
+        border-radius: 11px;
+        transition: transform 0.3s;
+    }
+
+    #menu_output > li:hover img {
+        transform: scale(1.04);
+    }
+
+    /* 현재 배열은 HOT, ICE가 번갈아 배치됨 */
+    #menu_output span {
+        display: inline-block;
+        padding: 3px 9px;
+        border-radius: 6px;
+        background: #fff0e8;
+        color: #b96340;
+        font-size: 10px;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+
+    #menu_output > li:nth-child(even) span {
+        background: #eaf3ff;
+        color: #477da8;
+    }
+
+    #menu_output em {
+        display: block;
+        margin-top: 7px;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: bold;
+        word-break: keep-all;
+    }
+
+    #menu_output p {
+        margin-top: 7px;
+        color: #244f3c;
+        font-size: 16px;
+        font-weight: 800;
+        font-variant-numeric: tabular-nums;
+    }
+
+    #menu_output p::after {
+        content: "원";
+        margin-left: 3px;
+        font-size: 11px;
+        font-weight: normal;
+    }
+
+    /* 주문내역 */
+    .total_main {
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+        min-width: 0;
+        padding: 32px 22px;
+        background: #244b3a;
+        color: #fff;
+    }
+
+    .total_main h1 {
+        padding-bottom: 23px;
+        border-bottom: 1px solid #ffffff25;
+        font-size: 23px;
+        letter-spacing: -1px;
+    }
+
+    .total_main h1::before {
+        content: "YOUR ORDER";
+        display: block;
+        margin-bottom: 9px;
+        color: #a7c0ab;
+        font-size: 10px;
+        letter-spacing: 3px;
+    }
+
+    #total {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        padding: 20px 5px 0 0;
+    }
+
+    #total:empty::before {
+        content: "아직 담긴 음료가 없어요.\A왼쪽에서 음료를 선택해 주세요.";
+        display: block;
+        padding: 65px 0;
+        color: #b4c9ba;
+        font-size: 13px;
+        line-height: 2;
+        text-align: center;
+        white-space: pre-line;
+    }
+
+    #total li {
+        margin-bottom: 12px;
+        padding: 16px 13px;
+        border: 1px solid #ffffff1c;
+        border-radius: 14px;
+        background: #ffffff0d;
+        font-size: 13px;
+        line-height: 2;
+        overflow-wrap: anywhere;
+        font-variant-numeric: tabular-nums;
+    }
+
+    #total li:hover {
+        background: #ffffff15;
+    }
+
+    #total button {
+        min-width: 32px;
+        height: 32px;
+        margin-top: 9px;
+        padding: 0 8px;
+        border: 1px solid #ffffff30;
+        border-radius: 8px;
+        background: #ffffff12;
+        color: #fff;
+        font-size: 15px;
+        vertical-align: middle;
+    }
+
+    /* 상품 설명 다음 줄에 버튼 배치 */
+    #total button:first-of-type::before {
+        content: none;
+    }
+
+    #total button:first-of-type {
+        margin-left: 0;
+    }
+
+    #total li::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+
+    #total button:hover {
+        background: #e1eddf;
+        color: #244b3a;
+        transform: translateY(-2px);
+    }
+
+    #total button:last-child {
+        border-color: #f3b5a335;
+        background: #f3b5a315;
+        color: #ffd2c6;
+        font-size: 11px;
+    }
+
+    #total button:last-child:hover {
+        background: #b35e4d;
+        color: #fff;
+    }
+
+    /* 결제 영역 */
+    .total_price {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 22px;
+        width: 1100px;
+        max-width: 100%;
+        min-height: 100px;
+        margin: 0 auto;
+        padding: 22px 30px;
+        border: 1px solid #d8ddd5;
+        border-top: none;
+        border-radius: 0 0 28px 28px;
+        background: #fff;
+        color: #d9ddd6;
+        box-shadow: 0 25px 40px #263b3210;
+    }
+
+    #total_price {
+        margin-right: auto;
+        color: #244b3a;
+        font-size: 25px;
+        font-weight: 800;
+        letter-spacing: -1px;
+        font-variant-numeric: tabular-nums;
+    }
+
+    #total_price:empty::before {
+        content: "총 합계 : 0";
+    }
+
+    #total_price::after {
+        content: "원";
+        margin-left: 5px;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .total_price > button {
+        min-width: 180px;
+        padding: 17px 30px;
+        border: none;
+        border-radius: 13px;
+        background: #244f3c;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        box-shadow: 0 6px 15px #244f3c25;
+    }
+
+    .total_price > button:hover {
+        transform: translateY(-2px);
+        background: #32694f;
+        box-shadow: 0 9px 20px #244f3c35;
+    }
+
+    button:focus-visible {
+        outline: 3px solid #c6a96c;
+        outline-offset: 3px;
+    }
+
+    /* 스크롤바 */
+    .menu,
+    #total {
+        scrollbar-width: thin;
+        scrollbar-color: #9aaf9e transparent;
+    }
+
+    .menu::-webkit-scrollbar,
+    #total::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    .menu::-webkit-scrollbar-thumb,
+    #total::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: #9aaf9e;
+    }
+
+    /* 작은 화면 */
+    @media (max-width: 800px) {
+        body {
+            padding: 20px 12px;
+        }
+
+        .main1 {
+            width: 65%;
+            padding: 24px 16px;
+        }
+
+        .total_main {
+            width: 35%;
+            padding: 24px 14px;
+        }
+
+        .main1 h1 {
+            font-size: 21px;
+        }
+
+        #menu_output {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+    }
+
+    @media (max-width: 520px) {
+        .main {
+            flex-direction: column;
+            height: auto;
+        }
+
+        .main1,
+        .total_main {
+            width: 100%;
+        }
+
+        .menu {
+            flex: none;
+            max-height: 480px;
+        }
+
+        .total_main {
+            min-height: 230px;
+        }
+
+        #total {
+            flex: none;
+            max-height: 280px;
+        }
+
+        .total_price {
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 20px;
+        }
+
+        #total_price {
+            font-size: 22px;
+        }
+
+        .total_price > button {
+            width: 100%;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            transition: none !important;
+        }
+    }
