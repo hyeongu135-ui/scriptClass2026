@@ -802,14 +802,32 @@ body > h2 {
         table += '</table>'
         seat_output.innerHTML = table;
 
+        let event01 = document.querySelectorAll('.seat_num');
+        event01.forEach((element)=> {
+            element.addEventListener('mouseenter',()=>{
+                element.classList.add('active')
+            })
+            element.addEventListener('mouseleave',()=>{
+                element.classList.remove('active')
+            })
+        });
+        console.log(event01.className)
         //좌석 예약+확인()
         function movie_reserve(seatNum, seatNum2, td) {
 
+
+            if(arr2[seatNum][seatNum2] == 2 ){
+                alert('이미 예매가 완료된 좌석입니다')
+                return;
+            }
 
             if (count <= 0) {
                 alert('인원을 선택해주세요')
                 return;
             }
+
+                
+
             console.log('return01');
             if (arr1[seatNum][seatNum2] == 1) { //선택 취소
                 arr1[seatNum][seatNum2] = '';
@@ -818,7 +836,8 @@ body > h2 {
 
             } else {
                 let selected = 0;
-
+        // 1명일 경우 1개만 예약
+        if(count == 1){
                 for (let i = 0; i < arr1.length; i++) {
                     for (let j = 0; j < arr1[i].length; j++) {
                         if (arr1[i][j] == 1) {
@@ -834,11 +853,23 @@ body > h2 {
                     alert('선택 인원을 초과했습니다.')
                     return;
                 }
-
+                
                 arr1[seatNum][seatNum2] = 1;
                 td.classList.add('reserve_2');
-
+        // 2명 이상일 경우 2명씩 예약 
             }
+            else{
+                let two = document.querySelectorAll('td.seat_num')
+                let index = seatNum*10+seatNum2+1;
+                console.log(two);
+                console.log(index);
+                    selected+2;
+                    arr1[seatNum][seatNum2] = 1;
+                    arr1[seatNum][seatNum2-1] = 1;
+                    two[index-1].classList.add('reserve_2');
+                    two[index].classList.add('reserve_2');
+                }
+        }
             console.log('return02');
 
             // 선택 좌석 목록을 새로 만듦
@@ -871,7 +902,7 @@ body > h2 {
             result += '</table>';
             seat_output_1.innerHTML = result;
         }
-
+    
 
         //좌석 취소
         function reset() {

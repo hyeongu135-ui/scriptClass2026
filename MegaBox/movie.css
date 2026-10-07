@@ -1,1 +1,262 @@
 @charest "UTF-8";
+
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        ul{
+            list-style: none;
+        }
+        h2{
+            height: 60px;
+            line-height: 60px;
+            margin-left: 20px;
+        }
+        #main hr{
+            margin: 5px 0;
+            height: 3px;
+            background-color: black;
+        }
+
+        .reset{
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+        
+        .reset button{
+            border: none;
+            border: 1px solid #CCC;
+            border-radius: 5px;
+            padding: 2px;
+            cursor: pointer;
+        }
+
+        body{
+            width: 700px;
+            margin: 0 auto;
+
+        }
+
+        
+
+        .reserve{
+            background-color: #e6e6e6;
+            display: flex;
+            justify-content: space-evenly;
+            padding: 5px 0;
+        }
+
+        .reserve_main_1{
+            display: flex;
+            justify-content: space-between;
+        } 
+        .reserve_main_1 .people{
+            margin-right: 7px;
+            font-size: 10px;
+            line-height: 20px;
+        }
+
+
+        .reserve_main{
+            width: 60px;
+            height: 22px;
+            display: flex;
+            justify-content: space-between;
+            border: 1px solid #838282;
+            border-radius: 3px;
+        }
+
+        .reserve_main button{
+            width: 15px;
+            height: 20px;
+            border-radius: 3px 0 0 3px;
+            border: none;
+            background-color: rgb(248, 248, 248);
+
+        }
+        .reserve_main p{
+            width: 30px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            border-right: 1px solid #838282;
+            border-left: 1px solid #838282;
+            background-color: white;
+        }
+
+        #seat p {
+            background-color: bisque;
+        }
+
+        #seat{
+            padding-bottom: 30px;
+        }
+
+        td.seat_row_2{
+            border: none;
+            padding-right: 30px;
+        }
+
+        td.seat_num{
+            color: white;
+            background-color: rgb(53, 29, 75);
+            border: 1px solid #2facff;
+            cursor: pointer;
+        }
+
+        td.seat_num.reserve_2{
+            background-color: red;
+        }
+
+        td.seat_num.reserve_3{
+            background-color: blue;
+        }
+        .all{
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+        .movie_info{
+            width: 30%;
+            border: 1px solid #646464;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #252525;
+            color: white;
+            position: relative;
+        }
+
+        .btn{
+            display: flex;
+            position: absolute;
+            bottom: 0;
+            margin-left: -10px;
+            width: 100%;
+        }
+        .btn .le{
+            color: white;
+            background-color: rgb(45, 45, 63);
+            border: 1px solid rgb(45, 45, 63);
+            width: 50%;
+            border-radius: 0 0 0px 5px;
+            cursor: pointer;
+        }
+
+
+
+        .btn .ri{
+            color: #646464;
+            border: none;
+            width: 50%;
+            border-radius: 0 0 4px 0px;
+            cursor: pointer;
+        }
+
+        #main{
+            width: 68%;
+        }
+        .view{
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .seat_info{
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        table{
+            margin: 0 auto;
+        }
+        h3{
+            text-align: center;
+            margin: 20px 0;
+        }
+        td{
+            width: 25px;
+            height: 25px;
+            text-align: center;
+        }
+        .title span{
+            display: inline-block;
+            text-align: center;
+            font-weight: bold;
+            width: 22px;
+            background-color: orange;
+            color: white;
+            margin-right: 3px;
+        }
+        .movie_type{
+            color: #838282;
+            font-size: 14px;
+            margin-left: 33px;
+            margin-bottom: 3px;
+        }
+        
+        .movie_main{
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            margin: 10px 0;
+        }
+
+        .movie_main img{
+            width: 70px;
+            margin-right: 10px;
+        }
+
+        .movie_main li{
+            margin: 12px 0;
+        }
+        .movie_main li select{
+            width: 80px;
+            font-size: 10px;
+            background-color: #252525;
+            color: white;
+            border: 1px solid #444343;
+        }
+        .seat_info{
+            font-size: 13px;
+            border: 1px solid #646464;
+            border-radius: 5px;
+            height: 155px;
+            margin-top: 5px;
+        }
+
+        .seat_coment{
+            width: 60%;
+            font-size: 12px;
+            padding: 10px;
+            border-right: 1px solid #646464 ;
+        }
+
+        div .choice{
+            margin-top: 10px;
+            text-align: center;
+        }
+
+
+        .total{
+            font-size: 15px;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .total p{
+            border-top: 1px solid white;
+        }
+
+        .choice_seat{
+            border: 1px solid #444343;
+        }
+
+        #seat p{
+            margin-top: 10px;
+        }
+        
+        td.active{
+            background-color: greenyellow;
+            border-bottom-color: red ;
+        }
