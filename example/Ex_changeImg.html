@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <script src="/js/ex_changeImg.js" defer></script>
+    <link rel="stylesheet" href="/style/Ex_changeImg.css">
+</head>
+<body>
+         <div>
+            <h1>에디오피아 게뎁</h1>
+            <div class="main">
+                <img id="img-main" src="/images/coffee-pink.jpg" alt="">
+                <ul>
+                    <li><p>상품명 : 에디오피아 게입</p></li>
+                    <li><p class="price">판매가 : 9000원</p></li>
+                    <li><p>배송비 : 1000원</p></li>
+                    <li><p>(50000원 이상 구매 시 무료)</p></li>
+                    <li><p>적립금 : 180원(2%)</p></li>
+                    <li><p>로스팅 : 2019.06.17</p></li>
+                    <li><button>장바구니 담기</button></li>
+                </ul>
+            </div>    
+        </div>
+            <div class="imgs">
+                <img class="col" src="/images/coffee-pink.jpg" alt="">
+                <img class="col" src="/images/coffee-blue.jpg" alt="">
+                <img class="col" src="/images/coffee-gray.jpg" alt="">
+            </div>
+            <div class="coment">
+                <a id="coment-link" onclick="detail()" href="#">상세 설명 보기</a>
+            </div>
+            <div id="detail_coment">
+                <ul>
+                    <li><p>원산지 : 에디오피아</p></li>
+                    <li><p>지역 : 이르가체프 코체레</p></li>
+                    <li><p>농장: 게뎁</p></li>
+                    <li><p>고도 : 1,950~2,000m</p></li>
+                    <li><p>품 종 : 지역 토착종</p></li>
+                    <li><p>가공법 : 워시드</p></li>
+                </ul>
+                <h1>Information</h1>
+                <p>2차 세계대전 이후 설립된 게뎁 농장은 유기농 인증 농장으로 여성의 고용 창출과 지역사회 발전에 기여하며 3개째 이어져 내료어노는 오랜 역사를 가진 농장입니다.
+                    게뎁 농장은SCAA인증을 받은 커피 품질관리 실험실을 갖추고 있어 철저한 관리를 통해 스페셜티 커피를 생산합니다.
+                </p>
+                <h1>Flavor Note</h1>
+                <p>은은하고 다채로운 꽃향, 망고, 다크체리, 달달함이 입안 가득.</p>
+            </div>
+</body>
+</html>

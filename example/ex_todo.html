@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="kp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoList 연습문제</title>
+    <style>
+        .todo-container{
+            width: 400px;
+            margin: 0 auto;
+        }
+        ul{
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="todo-container">
+        <h1>할 일 목록</h1>
+        <div class="input-area">
+            <input id="task" type="text" placeholder="할 일 입력">
+            <button onclick="addTask()">추가</button>
+        </div>
+        <ul id="task1"></ul>
+    </div>
+    <script>
+        let task1 = document.getElementById('task1');
+        let task = document.getElementById('task');
+        function addTask(){
+            let newList = document.createElement('li');
+            newList.innerHTML = `${task.value} <button onclick = x>x</button>`
+            console.log(newList);
+
+            task1.appendChild(newList);
+
+        }
+
+        function x(){
+            document.getElementById
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="kp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoList 연습문제</title>
+    <style>
+        .todo-container{
+            width: 400px;
+            margin: 0 auto;
+        }
+        ul{
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="todo-container">
+        <h1>할 일 목록</h1>
+        <div class="input-area">
+            <input id="task" type="text" placeholder="할 일 입력">
+            <button onclick="addTask()">추가</button>
+        </div>
+        <ul id="tasks"></ul>
+    </div>
+    <script>
+    function addTask(){
+
+        let tasks =document.getElementById('tasks');
+        let inputVal = document.getElementById('task').value;
+        //li 생성 => createElement
+        // input 빈값 예외 처리
+        if(inputVal=='')return;
+        let liList = document.createElement('li');
+        liList.innerText = inputVal;
+        // ul의 부모에 자식으로 추가
+        tasks.appendChild(liList);
+
+        // li안에 button 생성하기
+        let btn = document.createElement('button')
+        liList.appendChild(btn)
+        // 생성 button에 class이름 생성 프로퍼티 : className
+        btn.className ='delbtn'
+        btn.innerText ="x";
+        console.log(btn.className)
+        //btn을 클릭하면 삭제
+        btn.onclick = function(){ //익명 function()
+            liList.remove();
+        }
+    }
+    </script>
+</body>
+</html>
