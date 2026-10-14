@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수 종류</title>
+</head>
+<body>
+<script>
+    // 선언적 함수 : 우선권이 주어짐
+    // 호이스팅 이슈가 존재함 = > 함수 전체가 스코프(영역) 최상단으로 끌어올료지는 현상
+    //                         - 함수를 선언하기 전 호출하여 사용할 수 있다.
+    sayHello();// 호출해도 에러 발생 x
+    function sayHello(){
+        console.log('1Hello');
+    }
+    sayHello();// 호출해도 에러 발생 x
+    // 익명함수 => 함수의 이름이 존재하지 않는 함수로 호출이 불가능
+    // 함수를 호출할 수 없으므로 변수에 대입하여 사용한다.
+    // 그래서 다른말로 대입형함수라도고도 부른다.
+    // sayHello02(); // 익명함수 호출시 에러 발생
+    let sayHello02 = function(){
+        console.log('2Hello02')
+    }
+    sayHello02();
+
+    // 함수안에 함수를 다른 인수로 호출
+    function say(){
+        return 'sayhello';
+    }
+    function greeting(helMsg,name){
+        console.log(helMsg+" "+name);
+    }
+    greeting(say(),'javascript');
+
+    // 화살표함수 : 자바스크립트 또는 리액트에서 주로 사용하는 함수작성 방법
+    // 익명함수보다 표현식이 단순하고 간결한 문법으로 함수를 만들수 있다.
+    // let 이름 = (인수1, 인수2) => 실행할 식
+    let sum = (a,b) => a+b;
+    console.log('sum화살표 함수',sum(2,5))
+
+    let sum02 = function(a,b){
+        return a+b;
+    }
+    console.log(sum02(2,5))
+
+
+    // 세미콜론★
+    function sum03(a,b){
+        let result = a+b;
+        return result;
+    }
+    console.log(sum03(2,7));
+    
+    //즉시 실행함수
+    (function (){
+        document.write('<p>Hello JavaScript</p>');
+    })();
+
+    // Javascript에서 a == b는, a,b의 값이 같은지만 비교한다.
+    // a=== b 는 a,b의 값과 변수의 유형이 같은지까지 비교한다.
+    // 배열에서 filter()메소드 => 조건에 만족하는 요소들만 새로운 배열로 반환
+
+    let num = [1,2,3,4,5,6,7,8,9,10];
+    // 대입형 익명 함수 + 화살표 함수
+    let isOdd = (currntNum) => {
+        return currntNum % 2 == 0;
+    }
+    
+    console.log("짝수",num.filter(isOdd));
+
+    // filter()메소드의 item = num의 배열의 각 값을 의미.
+    num = num.filter((item) => item % 2 == 1);
+
+    console.log('홀수',num);
+</script>    
+</body>
+</html>

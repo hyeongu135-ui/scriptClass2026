@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>슬라이드 2</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing:border-box ;
+
+        }
+        body{
+            /* display: flex; */
+        }
+        ul{
+            list-style: none;
+        }
+
+        a{
+            text-decoration: none;
+            color: #333;
+        }
+        #menuBtn{
+            position: fixed;
+            width: 20px;
+            top: 15px;
+            left: 10px;
+            z-index: 10;
+            
+        }
+        h1{
+            margin-left: 40px;
+             transition: 0.3s;
+
+            }
+        #menu{
+            background-color: aquamarine;
+            width: 100px;
+            position: fixed;
+            padding-top: 50px;
+            padding-bottom: 20px;
+            top: 0;
+            left: -100px;
+            transition: 0.3s;            
+        }
+        #menu.active{
+            padding-left: 10px;
+            left: 0;
+            transition: 0.3s;            
+            
+        }
+        h1.h{
+            margin-left: 110px;
+            transition: 0.3s;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>DOM 실습 - 왼쪽 슬라이드 메뉴</h1>
+    <button id="menuBtn">&#x2630;</button>
+    <nav id="menu">
+        <ul>
+            <li><a href="#">홈</a></li>
+            <li><a href="#">서비스</a></li>
+            <li><a href="#">문의</a></li>
+            <li><a href="#">연락처</a></li>
+            <li><a href="#">소개</a></li>
+        </ul>
+    </nav>
+ <script>
+    let menuBtn = document.getElementById('menuBtn');
+    let menu = document.getElementById('menu');
+    let h1 = document.getElementsByTagName('h1')[0]
+    
+
+    menuBtn.addEventListener('click',()=>{
+        menu.classList.toggle('active');
+        h1.classList.toggle('h');
+    })
+
+ </script>
+</body>
+
+</html>

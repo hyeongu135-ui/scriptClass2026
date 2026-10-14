@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>슬라이드 이미지</title>
+
+    <style>
+        *{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            font-family: sans-serif;
+        }
+        body{
+            background-color: #f5f5f5;
+
+        }
+        .slider-wrap{
+            position: relative;
+            width: 600px;
+            height: 350px;
+            margin: 100px auto;
+            border-radius: 20px;
+            box-shadow: 5px 20px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        .slider-wrap img{
+            width: 100%;
+            height: 100%;
+        }
+        .slider-wrap .btns{
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap : 10px
+        }
+        .slider-wrap .btns span{
+            /* display: inline-block; */
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color:  #ccc;
+            cursor: pointer;
+        }
+        .slider-wrap .btns span.active{
+            background-color: dodgerblue;
+            /* transform: scale(1.3); 크기를 1.3배 만큼 확대 */
+            /* transform: scale(0.5)); 크기를 0.5배만큼 축수 */
+            transform: scale(1.3);
+        }
+        .slider-wrap .control{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(255,255,255,0.8);
+            padding: 6px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            /* 요소 내 텍스트 드래그 안되도록 하는 법 */
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="slider-wrap">
+        <div class="slider">
+            <img id="photo" src="/images/pic_1.jpg" alt="슬라이드 이미지" />
+        </div>
+        <div class="btns">
+            <span class="active"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="control" id="togglebtn">&#x23F8; 정지</div>
+    </div>
+    <script>
+        let photo = document.getElementById('photo');
+        let btns = document.querySelectorAll('.btns span')
+        let togglenbtn = document.getElementById('togglebtn');
+
+        //현재 보여주는 슬라이드 번호 초기화
+        let currntNumIndex =0;
+        // span 개수 초기화
+        let spantotal = btns.length;
+        // 현 재 슬라이드가 재생중인지, 정지상태인지 상태를 계속 확인하는 변수
+        let isPlay = true
+        let timer;
+
+        // 슬라이드 실행 함수 showslide()
+        function showSlide(index){
+            photo.src = `/images/pic_${index+1}.jpg`
+            
+            //btns
+            for(let i = 0; i < spantotal; i++){
+                // ClassList.remove()나,
+                // add().만의 클래스 이름은 .(정)또는 #
+                btns[i].classList.remove('active');
+            }
+
+            // index에 해당하는 span의 active클래스가 추가된다.
+            btns[index].classList.add('active')
+        }
+        // 2초마다 이미지가 변경되는 자동슬라이드 시작 함수 추가
+        function startslide(){
+            timer = setInterval(()=>{
+                // if(currntNumIndex == 5) {currntNumIndex = 0;}
+                
+                // currntNumIndex = (currntNumIndex + 1) % spantotal;
+                
+                if(currntNumIndex === spantotal -1){
+                    currntNumIndex=0;
+                }else{
+                    currntNumIndex++;
+
+                }
+
+                //슬라이드 쇼함수
+                showSlide(currntNumIndex)
+            },3000)
+        }
+
+        function stopslide(){
+            //setTimeout의 timer를 멈춤
+            clearInterval(timer)
+        }
+
+        //함수 호출
+        showSlide(currntNumIndex);
+        // 자동재생 시작(2초 간격)
+        startslide();
+
+        togglenbtn.addEventListener('click',()=>{
+            if(isPlay){
+                // 재생중 -> 정지
+                stopslide();
+                togglenbtn.innerText ="▶ 재생"
+                isPlay=false;
+            }else{
+                // 정지중일때 -> 재생
+                startslide();
+                togglenbtn.innerText ="\u23F8 정지" //정지모양 유니코드
+                isPlay=true;
+
+                
+            }
+        })
+    </script>
+</body>
+
+</html>
