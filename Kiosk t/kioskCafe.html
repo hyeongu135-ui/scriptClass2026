@@ -160,11 +160,13 @@
 
         ];
         //DOM
-        let length = 0;
+
         let menu_output = document.getElementById('menu_output');
         let total = document.getElementById('total');
         let total_price = document.getElementById('total_price');
         let menu_add = [];
+        let hmenu_add = [];
+        let cmenu_add = [];
         let chart1 = document.getElementsByClassName('chart')[0];
         let chart2 = document.getElementsByClassName('chart')[1];
         let chart3 = document.getElementsByClassName('chart')[2];
@@ -243,7 +245,6 @@
         console.log(ice);
 
 
-
         //all 출력
         chart1.addEventListener('click', () => {
             let result = '';
@@ -255,162 +256,165 @@
                 <p>${menus[i].price}</p>
                 </li>`
             }
-            length = menus.length;
-            console.log('a',length)
+            let index = 0;
+            console.log('a', index)
             menu_output.innerHTML = result;
         })
 
-
+        let index = 0;
         //HOT 출력
         chart2.addEventListener('click', () => {
             let hot_re = '';
             for (let i = 0; i < hot.length; i++) {
-                hot_re += `<li id='menu_li' onclick="add(${i})">
+                hot_re += `<li id='menu_li' onclick="add(${hot[i].id})">
                 <img src="/Kiosk/img/${hot[i].id}.png" alt="">
                 <span>${hot[i].type}</span><br>
                 <em>${hot[i].name}</em>
                 <p>${hot[i].price}</p>
                 </li>`
             }
-            length = hot.length;
-            console.log('h',length)
+            let index = 1;
+            console.log('h', index)
             menu_output.innerHTML = hot_re;
         })
 
         chart3.addEventListener('click', () => {
             let ice_re = '';
             for (let i = 0; i < ice.length; i++) {
-                ice_re += `<li id='menu_li' onclick="add(${i})">
+                ice_re += `<li id='menu_li' onclick="add(${ice[i].id})">
                 <img src="/Kiosk/img/${ice[i].id}.png" alt="">
                 <span>${ice[i].type}</span><br>
                 <em>${ice[i].name}</em>
                 <p>${ice[i].price}</p>
                 </li>`
             }
-            length = ice.length;
-            console.log('i',length)
+            let index = 2;
+            console.log('i', index)
             menu_output.innerHTML = ice_re;
         })
 
         // 카테고리 별 메뉴 출력
-
+        console.log(index);
         function add(addindex) {
-        if(length == 24){
+                if (index == 0) {
+                console.log('a',index)
+                let check = -1;
+                let output = '';
+                console.log('나다')
 
-            let check = -1;
-            let output = '';
 
-
-
-            for (let i = 0; i < menu_add.length; i++) {
-                if (menu_add[i].id == menus[addindex].id) {
-                    check = i;
-                    break;
+                for (let i = 0; i < menu_add.length; i++) {
+                    if (menu_add[i].id == menus[addindex].id) {
+                        check = menus[addindex].id;
+                        break;
+                    }
                 }
-            }
-            // 수량만 추가한다.
-            // menu_add 배열의 상품이 존재하는지 유무를 check로 한다.
-            if (check == -1) {
-                // 장바구니 비어
-                // 상품 menu_add 배열에 추가
-                menu_add.push(menus[addindex]);
+                // 수량만 추가한다.
+                // menu_add 배열의 상품이 존재하는지 유무를 check로 한다.
+                if (check == -1) {
+                    // 장바구니 비어
+                    // 상품 menu_add 배열에 추가
+                    menu_add.push(menus[addindex]);
 
 
-            } else {
-                // check= -1이 아니면 상품 없어
-                // 수량 누적
-                menu_add[check].quantity++;
+                } else {
+                    // check= -1이 아니면 상품 없어
+                    // 수량 누적
+                    menu_add[check].quantity++;
 
-            }
-            for (let i = 0; i < menu_add.length; i++) {
-                output += `<li>${menu_add[i].name}${menu_add[i].type}${menu_add[i].quantity}. ${menu_add[i].price * menu_add[i].quantity}
+                }
+                for (let i = 0; i < menu_add.length; i++) {
+                    output += `<li>${menu_add[i].name}${menu_add[i].type}${menu_add[i].quantity}. ${menu_add[i].price * menu_add[i].quantity}
                                 <button onclick = 'plus(${i})'>+</button>
                                 <button onclick = 'minus(${i})'>-</button>
                                 <button onclick = 'del(${i})'>del</button>
                                 </li>`;
-            }
-            total.innerHTML = output;
-            totalz();
-        }else if(length == 14){
-                    function add(addindex) {
-
-            let check = -1;
-            let output = '';
-
-
-
-            for (let i = 0; i < menu_add.length; i++) {
-                if (menu_add[i].id == hot[addindex].id) {
-                    check = i;
-                    break;
                 }
-            }
-            // 수량만 추가한다.
-            // menu_add 배열의 상품이 존재하는지 유무를 check로 한다.
-            if (check == -1) {
-                // 장바구니 비어
-                // 상품 menu_add 배열에 추가
-                menu_add.push(hot[addindex]);
-
-
-            } else {
-                // check= -1이 아니면 상품 없어
-                // 수량 누적
-                menu_add[check].quantity++;
+                total.innerHTML = output;
+                totalz();
 
             }
-            for (let i = 0; i < menu_add.length; i++) {
-                output += `<li>${menu_add[i].name}${menu_add[i].type}${menu_add[i].quantity}. ${menu_add[i].price * menu_add[i].quantity}
+         else if (index == 1) {
+
+            function add(addindex) {
+
+                let check = -1;
+                let output = '';
+                console.log('h', index)
+
+
+                for (let i = 0; i < menu_add.length; i++) {
+                    if (hmenu_add[i].id == hot[addindex].id) {
+                        check = i;
+                        break;
+                    }
+                }
+                // 수량만 추가한다.
+                // menu_add 배열의 상품이 존재하는지 유무를 check로 한다.
+                if (check == -1) {
+                    // 장바구니 비어
+                    // 상품 menu_add 배열에 추가
+                    hmenu_add.push(hot[addindex]);
+
+
+                } else {
+                    // check= -1이 아니면 상품 없어
+                    // 수량 누적
+                    hmenu_add[check].quantity++;
+
+                }
+                for (let i = 0; i < hmenu_add.length; i++) {
+                    output += `<li>${hmenu_add[i].name}${hmenu_add[i].type}${hmenu_add[i].quantity}. ${hmenu_add[i].price * hmenu_add[i].quantity}
                                 <button onclick = 'plus(${i})'>+</button>
                                 <button onclick = 'minus(${i})'>-</button>
                                 <button onclick = 'del(${i})'>del</button>
                                 </li>`;
-            }
-            total.innerHTML = output;
-            totalz();
-        }
-    }else if(length == 10){
-                function add(addindex) {
-
-            let check = -1;
-            let output = '';
-
-
-
-            for (let i = 0; i < menu_add.length; i++) {
-                if (menu_add[i].id == ice[addindex].id) {
-                    check = i;
-                    break;
                 }
+                total.innerHTML = output;
+                totalz();
             }
-            // 수량만 추가한다.
-            // menu_add 배열의 상품이 존재하는지 유무를 check로 한다.
-            if (check == -1) {
-                // 장바구니 비어
-                // 상품 menu_add 배열에 추가
-                menu_add.push(ice[addindex]);
+        } else if (index == 2) {
+
+            function add(addindex) {
+                console.log('c', index)
+                let check = -1;
+                let output = '';
+                console.log('c')
 
 
-            } else {
-                // check= -1이 아니면 상품 없어
-                // 수량 누적
-                menu_add[check].quantity++;
+                for (let i = 0; i < cmenu_add.length; i++) {
+                    if (cmenu_add[i].id == ice[addindex].id) {
+                        check = i;
+                        break;
+                    }
+                }
+                // 수량만 추가한다.
+                // menu_add 배열의 상품이 존재하는지 유무를 check로 한다.
+                if (check == -1) {
+                    // 장바구니 비어
+                    // 상품 menu_add 배열에 추가
+                    cmenu_add.push(ice[addindex]);
 
-            }
-            for (let i = 0; i < menu_add.length; i++) {
-                output += `<li>${menu_add[i].name}${menu_add[i].type}${menu_add[i].quantity}. ${menu_add[i].price * menu_add[i].quantity}
+
+                } else {
+                    // check= -1이 아니면 상품 없어
+                    // 수량 누적
+                    cmenu_add[check].quantity++;
+
+                }
+                for (let i = 0; i < cmenu_add.length; i++) {
+                    output += `<li>${cmenu_add[i].name}${cmenu_add[i].type}${cmenu_add[i].quantity}. ${cmenu_add[i].price * cmenu_add[i].quantity}
                                 <button onclick = 'plus(${i})'>+</button>
                                 <button onclick = 'minus(${i})'>-</button>
                                 <button onclick = 'del(${i})'>del</button>
                                 </li>`;
+                }
+                total.innerHTML = output;
+                totalz();
             }
-            total.innerHTML = output;
-            totalz();
         }
     }
-}
 
-        console.log(hot.length)
 
     </script>
 </body>
